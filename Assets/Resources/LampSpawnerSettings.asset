@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc6e7710c344f61b2c289323a394519, type: 3}
+  m_Name: LampSpawnerSettings
+  m_EditorClassIdentifier: 
+  streetLampPrefab: {fileID: 2788267147268296002, guid: 81e699e0072fe4e74a843cbefc583933, type: 3}

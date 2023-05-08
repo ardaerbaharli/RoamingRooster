@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f546a8640a48a181d993b4d32803ca, type: 3}
+  m_Name: LilyPadSpawnerSettings
+  m_EditorClassIdentifier: 
+  lilyPadPrefabs:
+  - {fileID: 1827561305407624, guid: 6509fae381cd4c948b676c8e4f384984, type: 3}
+  - {fileID: 1178500048782900957, guid: c4ffb3a942939453585135c7a9ffd921, type: 3}
+  - {fileID: 1991322978864050, guid: c9bb692f8b5490743a59d75a7995b81c, type: 3}
+  numberOfMaxItems: 8
+  numberOfMinItems: 4

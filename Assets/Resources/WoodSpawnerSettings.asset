@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5619d4343b384dad8b94b6b0b6a4aa48, type: 3}
+  m_Name: WoodSpawnerSettings
+  m_EditorClassIdentifier: 
+  woodPrefab: {fileID: 2346093917698827091, guid: 56f92558930374103a393f04a8890a44, type: 3}
+  numberOfWoodsPerLane: 7
+  minHeight: 1
+  maxHeight: 3

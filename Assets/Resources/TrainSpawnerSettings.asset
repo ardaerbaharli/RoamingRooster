@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f7db0155e84fb7b5a02b2b9e85720b, type: 3}
+  m_Name: TrainSpawnerSettings
+  m_EditorClassIdentifier: 
+  lightPolePrefab: {fileID: 6942740770153764064, guid: 9bdedf2a52e60427d835fc686f3bf296, type: 3}
+  biggestCarriagePrefab: {fileID: 3187887898879097890, guid: b8cd408eee7eb45a08eb903ccbeb993c, type: 3}
+  numberOfCarriagePerLane: 6
+  spaceBetweenCars: 0.5
+  trainSpeed: 40
+  trainY: 0.796
+  startTheTrainAfterSecondsMax: 1
+  startTheTrainAfterSecondsMin: 5
+  spawnEveryXSeconds: 10
