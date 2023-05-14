@@ -28,7 +28,20 @@ namespace Controllers
         public GameType gameType;
         public float remainingTime;
         public Action<float> OnRemainingTimeChanged;
-        public GameState State { get; set; }
+
+        private GameState state;
+
+        public GameState State
+        {
+            get => state;
+            set
+            {
+                PreviousState = state;
+                state = value;
+            }
+        }
+
+        public GameState PreviousState { get; set; }
 
         private void Awake()
         {
@@ -64,10 +77,11 @@ namespace Controllers
             remainingTime = timeRunGameTime;
             while (remainingTime > 0)
             {
-                remainingTime-=Time.deltaTime;
+                remainingTime -= Time.deltaTime;
                 OnRemainingTimeChanged?.Invoke(remainingTime);
                 yield return null;
             }
+
             remainingTime = 0;
             OnRemainingTimeChanged?.Invoke(remainingTime);
             yield return null;
@@ -88,7 +102,7 @@ namespace Controllers
         public void GameOver(GameOverType gameOverType, Hashtable args = null)
         {
             AdManager.Instance.GamesPlayed++;
-            
+
             State = GameState.GameOver;
             switch (gameOverType)
             {
@@ -137,15 +151,11 @@ namespace Controllers
         {
             MapManager.instance.SetRiverTrigger(value);
         }
-        
-        public void AdCompletion()
-        {
-            Resume();
-        }
 
-        public void AdButtonClicked()
+
+        public void SetGameState(GameState state)
         {
-            State = GameState.Paused;
+            State = state;
         }
     }
 }

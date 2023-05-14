@@ -1,3 +1,4 @@
+using System;
 using Controllers;
 using PowerUps;
 using UnityEngine;
@@ -9,6 +10,13 @@ namespace UI
         [SerializeField] private MessageBox messageBox;
         [SerializeField] private int buyCoinsAmount;
         [SerializeField] private int powerUpPrice;
+        [SerializeField] private GameObject removeAdsButton;
+
+
+        private void OnEnable()
+        {
+            removeAdsButton.SetActive(AdManager.Instance.IsAdsEnabled);
+        }
 
         public void BackButton()
         {
@@ -17,12 +25,20 @@ namespace UI
 
         public void BuyCoinsButton()
         {
-            messageBox.Configure("Are you sure you want to buy 1000 coins?", "Yes", "No", IapManager.Instance.BuyCoins(buyCoinsAmount), null);
+            messageBox.Configure("Are you sure you want to buy 1000 coins?", "Yes", "No",
+                IapManager.Instance.BuyCoins(buyCoinsAmount), null);
         }
 
         public void BuyRemoveAdsButton()
         {
-            messageBox.Configure("Are you sure you want to buy remove ads?", "Yes", "No", IapManager.Instance.BuyRemoveAds(), null);
+            messageBox.Configure("Are you sure you want to buy remove ads?", "Yes", "No",
+                RemoveAds, null);
+
+            void RemoveAds()
+            {
+                IapManager.Instance.BuyRemoveAds();
+                removeAdsButton.SetActive(false);
+            }
         }
 
         public void BuyShieldPowerUpButton()

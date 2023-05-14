@@ -5,6 +5,7 @@ namespace Enums
         Menu,
         Playing,
         GameOver,
-        Paused
+        Paused,
+        WatchingAd
     }
 }

@@ -19,9 +19,9 @@ namespace UI
         [SerializeField] private RectTransform scoreImage;
         [SerializeField] private RectTransform coinImage;
         [SerializeField] private RectTransform deathReasonImage;
-        
+
         [SerializeField] private MessageBox messageBox;
-        
+
         public static GameOverType gameOverType;
 
         private void OnEnable()
@@ -40,7 +40,7 @@ namespace UI
             GameManager.instance.OnGameOver -= OnGameOver;
             ScoreManager.instance.OnTopScoreChanged -= OnTopScoreChanged;
         }
-        
+
         private void OnGameOver(GameOverType gameOverType)
         {
             switch (gameOverType)
@@ -61,48 +61,48 @@ namespace UI
                     deathReasonText.text = "Time's up";
                     break;
             }
+
             highScoreText.text = $"Top Score: {ScoreManager.instance.TopScore}";
-            scoreText.text = $"Score: {ScoreManager.instance.Score}"; 
+            scoreText.text = $"Score: {ScoreManager.instance.Score}";
             coinText.text = $"Coins: {CoinManager.instance.Coins}";
             ButtonMovements();
         }
 
         private void ButtonMovements()
         {
-            highScoreImage.DOScale(1,0.1f).SetEase(Ease.OutBack);
-            scoreImage.DOScale(1,0.2f).SetEase(Ease.OutBack).SetDelay(0.2f);
-            coinImage.DOScale(1,0.2f).SetEase(Ease.OutBack).SetDelay(0.4f);
-            deathReasonImage.DOScale(1,0.2f).SetEase(Ease.OutBack).SetDelay(0.6f);
-          
+            highScoreImage.DOScale(1, 0.1f).SetEase(Ease.OutBack);
+            scoreImage.DOScale(1, 0.2f).SetEase(Ease.OutBack).SetDelay(0.2f);
+            coinImage.DOScale(1, 0.2f).SetEase(Ease.OutBack).SetDelay(0.4f);
+            deathReasonImage.DOScale(1, 0.2f).SetEase(Ease.OutBack).SetDelay(0.6f);
         }
 
         public void RestartButton()
         {
-           messageBox.Configure("Are you sure you want to restart?", "Yes", "No",RestartGame, null);
-           
+            messageBox.Configure("Are you sure you want to restart?", "Yes", "No", () => GameManager.instance.Restart(),
+                null, false);
         }
 
-        private void RestartGame()
-        {
-            GameManager.instance.Restart();
-        }
-        
+
         public void StoreButton()
         {
             PageController.Instance.ShowPage(Pages.Store);
         }
-        
+
         public void SettingsButton()
         {
             PageController.Instance.ShowPage(Pages.Options);
         }
-        
-        public void AdButton()
+
+        public void WatchAdToKeepPlayingButton()
         {
-            PageController.Instance.ShowPage(Pages.Ad);
-            GameManager.instance.AdButtonClicked();
+            AdManager.Instance.ShowAd(AdType.Rewarded);
+            AdManager.Instance.OnRewardedAdClosed += () =>
+            {
+                GameManager.instance.Resume();
+                Player.Player.Instance.IsDead = false;
+            };
         }
-        
+
         private void OnDestroy()
         {
             GameManager.instance.OnGameOver -= OnGameOver;

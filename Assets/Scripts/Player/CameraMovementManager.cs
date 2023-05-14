@@ -78,7 +78,7 @@ namespace Player
                 GameManager.instance.GameOver(GameOverType.FallBehind,
                     Helpers.Hash("playerDeathPosition", playerLastPos));
 
-            if (isFollowing && playerMovementManager.IsMoving)
+            if (isFollowing && playerMovementManager.IsMoving || playerMovementManager.isOnWood)
             {
                 var targetPos = playerLastPos + offset;
                 targetPos.x = Mathf.Clamp(targetPos.x, -cameraSettings.maxX, cameraSettings.maxX);

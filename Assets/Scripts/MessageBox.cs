@@ -13,53 +13,69 @@ public class MessageBox : MonoBehaviour
     [SerializeField] private float blackoutDuration = 0.5f;
 
     public Action OnProceedButtonClicked, OnCancelButtonClicked;
+    private bool _fadeAnimation;
+
 
     public void Configure(string description, string proceedButtonText, string cancelButtonText,
-        Action onProceedButtonClicked, Action onCancelButtonClicked)
+        Action onProceedButtonClicked, Action onCancelButtonClicked, bool fadeAnimation = true)
     {
         SetDescriptionText(description);
         SetProceedButtonText(proceedButtonText);
         SetCancelButtonText(cancelButtonText);
         OnProceedButtonClicked = onProceedButtonClicked;
         OnCancelButtonClicked = onCancelButtonClicked;
+        _fadeAnimation = fadeAnimation;
         StartCoroutine(Enable());
     }
 
     private IEnumerator Enable()
     {
-        // make the blackout color from transparent to black in blackoutDuration seconds and in the middle set the background active
-        var t = 0f;
-        while (t < blackoutDuration)
+        if (_fadeAnimation)
         {
-            t += Time.deltaTime;
-            var a = Mathf.Lerp(0, 1, t / blackoutDuration);
-            blackout.color = new Color(0, 0, 0, a);
-            if (t > blackoutDuration / 2)
+            // make the blackout color from transparent to black in blackoutDuration seconds and in the middle set the background active
+            var t = 0f;
+            while (t < blackoutDuration)
             {
-                background.SetActive(true);
-            }
+                t += Time.deltaTime;
+                var a = Mathf.Lerp(0, 1, t / blackoutDuration);
+                blackout.color = new Color(0, 0, 0, a);
+                if (t > blackoutDuration / 2)
+                {
+                    background.SetActive(true);
+                }
 
-            yield return null;
+                yield return null;
+            }
+        }
+        else
+        {
+            background.SetActive(true);
         }
     }
 
     private IEnumerator Disable()
     {
-        // make the blackout color from black to transparent in blackoutDuration seconds and in the middle set the background deactive
-        var t = 0f;
-        while (t < blackoutDuration)
+        if (_fadeAnimation)
         {
-            t += Time.deltaTime;
-            var a = Mathf.Lerp(1, 0, t / blackoutDuration);
-            blackout.color = new Color(0, 0, 0, a);
-            if (t > blackoutDuration / 2)
+            // make the blackout color from black to transparent in blackoutDuration seconds and in the middle set the background deactive
+            var t = 0f;
+            while (t < blackoutDuration)
             {
-                background.SetActive(false);
+                t += Time.deltaTime;
+                var a = Mathf.Lerp(1, 0, t / blackoutDuration);
+                blackout.color = new Color(0, 0, 0, a);
+                if (t > blackoutDuration / 2)
+                {
+                    background.SetActive(false);
+                }
+
+                yield return null;
             }
-
-            yield return null;
         }
-
+        else
+        {
+            background.SetActive(false);
+        }
     }
 
     public void SetDescriptionText(string text)

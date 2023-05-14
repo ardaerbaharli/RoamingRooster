@@ -8,6 +8,5 @@ namespace UI
         Options,
         Store,
         GameOver,
-        Ad
     }
 }

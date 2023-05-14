@@ -13,7 +13,7 @@ namespace Player
         [SerializeField] private bool isCheating;
         public bool GhostMode;
         public bool ShieldMode;
-        
+        public bool IsDead;
         public static Player Instance;
         private PlayerMovementManager playerMovementManager;
 
@@ -33,6 +33,9 @@ namespace Player
         {
             if (ShieldMode) return;
             if (isCheating) return;
+            if (IsDead) return;
+            
+            IsDead = true;
             ParticleEffect(type);
             GameManager.instance.GameOver(type);
         }
