@@ -9,6 +9,7 @@ namespace Controllers
 
         public event OnCoinGainedDelegate OnCoinGained;
         private int _coin;
+        
 
         public int Coins
         {
@@ -32,6 +33,16 @@ namespace Controllers
         private void Save()
         {
             PlayerPrefs.SetInt(Config.CoinPref, Coins);
+        }
+        
+        public void GainCoins(int amount)
+        {
+            Coins += amount;
+        }
+
+        public void LoseCoins(int amount)
+        {
+            Coins -= amount;
         }
     }
 }

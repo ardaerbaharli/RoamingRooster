@@ -1,8 +1,6 @@
-using System;
 using Controllers;
 using Enums;
 using UnityEngine;
-using UnityEngine.Audio;
 using Utilities;
 
 namespace UI
@@ -11,27 +9,11 @@ namespace UI
     {
         [SerializeField] private ToggleSwitch soundToggle;
         [SerializeField] private ToggleSwitch vibrationToggle;
-        [SerializeField] private DoubleSwitch languageToggle;
 
         private void Start()
         {
-            languageToggle.SetSwitchNames("tr", "en");
-            languageToggle.ActivateSwitch(Config.ActiveLanguage);
             soundToggle.Toggle(Config.IsSoundOn);
             vibrationToggle.Toggle(Config.IsVibrationOn);
-
-            languageToggle.OnSwitchChanged += OnLanguageToggleValueChanged;
-        }
-
-        private void OnLanguageToggleValueChanged(string s)
-        {
-            if (Config.ActiveLanguage.Equals(s)) return;
-            Config.ActiveLanguage = s;
-        }
-
-        private void OnDestroy()
-        {
-            languageToggle.OnSwitchChanged -= OnLanguageToggleValueChanged;
         }
 
         public void OnVibrationToggleValueChanged(bool value)

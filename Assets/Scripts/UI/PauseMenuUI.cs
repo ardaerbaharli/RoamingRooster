@@ -11,6 +11,8 @@ namespace UI
     {
         [SerializeField] private ToggleSwitch soundToggle;
         [SerializeField] private ToggleSwitch vibrationToggle;
+        
+        [SerializeField] private MessageBox messageBox;
 
         private void Start()
         {
@@ -34,8 +36,11 @@ namespace UI
         {
             GameManager.instance.Resume();
         }
-
         public void RestartButton()
+        {
+            messageBox.Configure("Are you sure you want to restart?", "Yes", "No",RestartGame, null);
+        }
+        private void RestartGame()
         {
             GameManager.instance.Restart();
         }

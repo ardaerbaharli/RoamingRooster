@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Enums;
+using Player;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -86,12 +87,15 @@ namespace Controllers
 
         public void GameOver(GameOverType gameOverType, Hashtable args = null)
         {
+            AdManager.Instance.GamesPlayed++;
+            
             State = GameState.GameOver;
             switch (gameOverType)
             {
                 case GameOverType.HitCar:
                     break;
                 case GameOverType.FallToWater:
+                    PlayerMovementManager.instance.isOnWater = true;
                     break;
                 case GameOverType.FallBehind:
                     break;
@@ -101,9 +105,9 @@ namespace Controllers
                     break;
             }
 
-            print("Game over");
-            OnGameOver?.Invoke(gameOverType);
+            PlayerMovementManager.instance.MoveForward();
             PageController.Instance.ShowPage(Pages.GameOver);
+            OnGameOver?.Invoke(gameOverType);
         }
 
         public void Pause()
@@ -132,6 +136,16 @@ namespace Controllers
         public void SetRiverTrigger(bool value)
         {
             MapManager.instance.SetRiverTrigger(value);
+        }
+        
+        public void AdCompletion()
+        {
+            Resume();
+        }
+
+        public void AdButtonClicked()
+        {
+            State = GameState.Paused;
         }
     }
 }

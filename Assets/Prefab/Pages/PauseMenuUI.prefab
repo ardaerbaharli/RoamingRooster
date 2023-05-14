@@ -35,9 +35,9 @@ RectTransform:
   m_Father: {fileID: 4256267938066913138}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 660, y: -128.0765}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4256267937994092879
@@ -211,9 +211,9 @@ RectTransform:
   m_Father: {fileID: 4256267939758255708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -959.4999}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 256.153}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4256267938066913137
@@ -277,9 +277,9 @@ RectTransform:
   m_Father: {fileID: 4256267939758255708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -652.8078}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 533, y: 254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4256267938158480121
@@ -411,9 +411,9 @@ RectTransform:
   m_Father: {fileID: 4256267939758255708}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -1266.6921}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 533, y: 255}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4256267938542143428
@@ -545,9 +545,9 @@ RectTransform:
   m_Father: {fileID: 4256267938066913138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -128.0765}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4256267938694689845
@@ -883,6 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundToggle: {fileID: 4256267938694689840}
   vibrationToggle: {fileID: 4256267937994092874}
+  messageBox: {fileID: 0}
 --- !u!1 &4256267939590131056
 GameObject:
   m_ObjectHideFlags: 0
