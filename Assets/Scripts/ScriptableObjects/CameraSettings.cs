@@ -11,5 +11,6 @@ namespace ScriptableObjects
        public float followSpeed;
        public float cameraThreshold;
        public bool passiveMove;
+       public int maxX;
     }
 }
