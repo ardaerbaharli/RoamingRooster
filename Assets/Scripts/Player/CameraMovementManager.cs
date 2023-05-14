@@ -78,11 +78,11 @@ namespace Player
                 GameManager.instance.GameOver(GameOverType.FallBehind,
                     Helpers.Hash("playerDeathPosition", playerLastPos));
 
-            if (isFollowing)
+            if (isFollowing && playerMovementManager.IsMoving)
             {
                 var targetPos = playerLastPos + offset;
+                targetPos.x = Mathf.Clamp(targetPos.x, -cameraSettings.maxX, cameraSettings.maxX);
 
-                if (targetPos.z < transform.position.z) return;
                 transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
             }
         }
