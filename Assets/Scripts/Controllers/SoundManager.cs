@@ -13,7 +13,6 @@ namespace Controllers
         [SerializeField] private AudioSource jumpWoodSound;
         [SerializeField] private AudioSource splashSound;
         [SerializeField] private AudioSource hitCarSound;
-        [SerializeField] private AudioSource backgroundSound;
 
         public static SoundManager instance;
 
@@ -56,11 +55,6 @@ namespace Controllers
         public void PlayHitCarSound()
         {
             hitCarSound.Play();
-        }
-
-        public void PlayBackgroundSound()
-        {
-            backgroundSound.Play();
         }
     }
 }
