@@ -17,34 +17,12 @@ namespace UI
 
         public void BuyCoinsButton()
         {
-            messageBox.Configure("Are you sure you want to buy 1000 coins?", "Yes", "No", BuyCoins, null);
-
-            void BuyCoins()
-            {
-                // TODO: Implement IAP and do this logic there
-                var success = true;
-                print("Bought coins: " + success);
-                if (success)
-                {
-                    CoinManager.instance.Coins += buyCoinsAmount;
-                }
-            }
+            messageBox.Configure("Are you sure you want to buy 1000 coins?", "Yes", "No", IapManager.Instance.BuyCoins(buyCoinsAmount), null);
         }
 
         public void BuyRemoveAdsButton()
         {
-            messageBox.Configure("Are you sure you want to buy remove ads?", "Yes", "No", BuyRemoveAds, null);
-
-            void BuyRemoveAds()
-            {
-                // TODO: Implement IAP and do this logic there
-                var success = true;
-                print("Remove ads: " + success);
-                if (success)
-                {
-                    //  AdManager.Instance.RemoveAds();
-                }
-            }
+            messageBox.Configure("Are you sure you want to buy remove ads?", "Yes", "No", IapManager.Instance.BuyRemoveAds(), null);
         }
 
         public void BuyShieldPowerUpButton()

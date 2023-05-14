@@ -48,6 +48,8 @@ namespace UI
         {
             ScoreManager.instance.OnScored += OnScored;
             CoinManager.instance.OnCoinGained += OnCoinGained;
+            if (CoinManager.instance.Coins > 0)
+                coinText.text = CoinManager.instance.Coins.ToString();
         }
 
         private void OnScored(int score)

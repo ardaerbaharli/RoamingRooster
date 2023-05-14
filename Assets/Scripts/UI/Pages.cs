@@ -7,6 +7,7 @@ namespace UI
         Pause,
         Options,
         Store,
-        GameOver
+        GameOver,
+        Ad
     }
 }
