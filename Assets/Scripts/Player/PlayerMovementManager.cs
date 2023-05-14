@@ -32,7 +32,10 @@ namespace Player
         private Queue<Move> moves;
         public static PlayerMovementManager instance;
         private bool _isOnWood;
-
+        private bool _isOnWater;
+        
+        
+        [SerializeField] private int leftRightBorderValue = 5;
         public bool isOnWood
         {
             get => _isOnWood;
@@ -45,6 +48,16 @@ namespace Player
                     OnJumpedOffWood?.Invoke();
             }
         }
+        
+        public bool isOnWater
+        {
+            get => _isOnWater;
+            set
+            {
+                _isOnWater = value;
+            }
+        }
+        public bool IsMoving => isMoving;
 
         private void Awake()
         {
@@ -114,7 +127,20 @@ namespace Player
                 };
                 nextTileIndex += addition;
             }
-
+            
+            // Sağ sınıra eklenen kontrol
+            if (d == Direction.Right && nextTileIndex >= currentTile.lane.tileObjects.Count-leftRightBorderValue)
+            {
+                print("sağa gidemem");
+                return;
+            }
+            
+            // Sol sınıra eklenen kontrol
+            if (d == Direction.Left && nextTileIndex < leftRightBorderValue)
+            {
+                print("sola gidemem");
+                return;
+            }
 
             if (nextTileIndex < 0 || nextTileIndex >= nextLane.tileObjects.Count) return;
             var nextTileObj = nextLane.tileObjects[nextTileIndex];
@@ -142,7 +168,19 @@ namespace Player
             if (currentTile.lane.laneIndex + 1 > ScoreManager.instance.Score)
                 ScoreManager.instance.Score = currentTile.lane.laneIndex + 1;
 
+           
             moves.Enqueue(move);
+        }
+        
+        public void MoveForward()
+        {
+            if(!isOnWater) return;
+            while (currentTile.type == TileType.River)
+            {
+                transform.position = currentTile.transform.position;
+                Move(Direction.Up);
+            }
+            isOnWater = false;
         }
 
         private void Update()
