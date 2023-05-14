@@ -17,3 +17,4 @@ MonoBehaviour:
   followSpeed: 5
   cameraThreshold: 4.3
   passiveMove: 1
+  maxX: 50
