@@ -24,6 +24,23 @@ namespace Player
         private bool isSet;
         private static readonly int RotateToGame = Animator.StringToHash("RotateToGame");
 
+        private bool isDeath;
+        public bool IsDeath
+        {
+            get => isDeath;
+            set
+            {
+                isDeath = value;
+                if (value)
+                {
+                    isFollowing = false;
+                    GameManager.instance.GameOver(GameOverType.FallBehind,
+                        Helpers.Hash("playerDeathPosition", playerLastPos));
+                }
+            }
+        }
+        
+        
         private void Awake()
         {
             cameraSettings = Resources.Load<CameraSettings>("CameraSettings");
@@ -85,6 +102,13 @@ namespace Player
 
                 transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
             }
+
+            if (isDeath)
+            {
+                transform.position = playerLastPos + offset;
+                isDeath = false;
+            }
         }
+        
     }
 }

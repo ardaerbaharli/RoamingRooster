@@ -5,6 +5,7 @@ using Enums;
 using MapEntities;
 using ScriptableObjects;
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -36,6 +37,12 @@ namespace Player
         
         
         [SerializeField] private int leftRightBorderValue = 5;
+        private float rightBorderLinePositon;
+        private float leftBorderLinePositon;
+        private int rightBorderIndex;
+        private int leftBorderIndex;
+        
+        CameraMovementManager cameraMovementManager;
         public bool isOnWood
         {
             get => _isOnWood;
@@ -65,6 +72,7 @@ namespace Player
             journeyTime = settings.journeyTime;
             jumpHeight = settings.jumpHeight;
 
+            cameraMovementManager = Helpers.Camera.GetComponent<CameraMovementManager>();
             instance = this;
         }
 
@@ -115,6 +123,8 @@ namespace Player
             {
                 var laneIndex = currentTile.lane.laneIndex;
                 nextTileIndex = MapManager.instance.GetTile(laneIndex, transform.position.x).tileIndex;
+                
+               
             }
             else
             {
@@ -128,17 +138,13 @@ namespace Player
                 nextTileIndex += addition;
             }
             
-            // Sağ sınıra eklenen kontrol
             if (d == Direction.Right && nextTileIndex >= currentTile.lane.tileObjects.Count-leftRightBorderValue)
             {
-                print("sağa gidemem");
                 return;
             }
             
-            // Sol sınıra eklenen kontrol
             if (d == Direction.Left && nextTileIndex < leftRightBorderValue)
             {
-                print("sola gidemem");
                 return;
             }
 
@@ -182,7 +188,22 @@ namespace Player
             }
             isOnWater = false;
         }
+        
 
+        public void RiverBorderCheck()
+        {
+            rightBorderIndex = currentTile.lane.tileObjects.Count - leftRightBorderValue;
+            leftBorderIndex = leftRightBorderValue;
+            rightBorderLinePositon = currentTile.lane.tileObjects[rightBorderIndex-leftRightBorderValue].transform.position.x;
+            leftBorderLinePositon = currentTile.lane.tileObjects[leftBorderIndex+leftRightBorderValue].transform.position.x;
+            if(transform.position.x > rightBorderLinePositon || transform.position.x < leftBorderLinePositon)
+            {
+                GameManager.instance.GameOver(GameOverType.FallBehind);
+                transform.position = currentTile.transform.position;
+                Move(Direction.Up);
+                cameraMovementManager.IsDeath = true;
+            }
+        }
         private void Update()
         {
             if (isMoving) return;

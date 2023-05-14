@@ -1,3 +1,4 @@
+using System;
 using Controllers;
 using Enums;
 using Player;
@@ -80,6 +81,7 @@ namespace MapEntities
             if (collisionInfo.collider.CompareTag("Player"))
             {
                 StartFollowing(collisionInfo);
+                PlayerMovementManager.instance.RiverBorderCheck();
             }
         }
 
